@@ -5,6 +5,6 @@
     <p class="editable" contenteditable="true">Email: example@example.com</p>
     <p class="editable" contenteditable="true">Tel.:</p>
     <p class="editable" contenteditable="true">Skills:</p>
-    <button id="downloadBtn">Download PDF</button>
+    <button id="downloadBtn">Скачать PDF</button>
   </div>
-`;const d=document.getElementById("resume"),r=document.getElementById("downloadBtn");function a(o){const n=document.createElement("span");n.classList.add("ripple-effect");const i=r.getBoundingClientRect();n.style.left=`${o.clientX-i.left}px`,n.style.top=`${o.clientY-i.top}px`,r.appendChild(n),setTimeout(()=>n.remove(),600)}r.addEventListener("click",o=>{document.activeElement&&document.activeElement.blur(),a(o),r.style.display="none",setTimeout(()=>{c().set({margin:.5,filename:"resume.pdf",html2canvas:{scale:3},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}}).from(d).save().finally(()=>{r.style.display=""})},200)});
+`;const a=document.getElementById("resume"),r=document.getElementById("downloadBtn");function d(o){const n=document.createElement("span");n.classList.add("ripple-effect");const i=r.getBoundingClientRect();n.style.left=`${o.clientX-i.left}px`,n.style.top=`${o.clientY-i.top}px`,r.appendChild(n),setTimeout(()=>n.remove(),600)}r.addEventListener("click",o=>{document.activeElement&&document.activeElement.blur(),d(o),r.style.display="none",setTimeout(()=>{c().set({margin:.5,filename:"resume.pdf",html2canvas:{scale:3},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}}).from(a).save().finally(()=>{r.style.display=""})},200)});
