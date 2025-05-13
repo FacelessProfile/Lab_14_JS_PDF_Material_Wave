@@ -1,17 +1,15 @@
 {
-  "name": "front-end-entrance-exam",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "resume-export-app",
+  "version": "1.0.0",
+  "description": "Интерактивное резюме с экспортом в PDF",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+  "author": "PONK",
+  "license": "MIT",
   "devDependencies": {
-    "vite": "^5.2.0"
-  },
-  "dependencies": {
-    "html2pdf.js": "^0.10.3"
+    "vite": "^5.0.0"
   }
 }
