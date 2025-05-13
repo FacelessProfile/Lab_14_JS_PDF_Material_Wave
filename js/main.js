@@ -1,24 +1,44 @@
-import '../css/style.css'
-import javascriptLogo from '../javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import '../css/style.css';
+const html2pdf = window.html2pdf;
 
 document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+  <div id="resume" class="resume-container">
+    <h1 class="editable" contenteditable="true">Your Name</h1>
+    <h2 class="editable" contenteditable="true">Your Proficiency</h2>
+    <p class="editable" contenteditable="true">Email: example@example.com</p>
+    <p class="editable" contenteditable="true">Tel.:</p>
+    <p class="editable" contenteditable="true">Skills:</p>
+    <button id="downloadBtn">Download PDF</button>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+const resumeEl = document.getElementById('resume');
+const downloadBtn = document.getElementById('downloadBtn');
+
+function createRipple(e) {
+  const circle = document.createElement('span');
+  circle.classList.add('ripple-effect');
+  const rect = downloadBtn.getBoundingClientRect();
+  circle.style.left = `${e.clientX - rect.left}px`;
+  circle.style.top = `${e.clientY - rect.top}px`;
+  downloadBtn.appendChild(circle);
+  setTimeout(() => circle.remove(), 600);
+}
+
+downloadBtn.addEventListener('click', (e) => {
+  if (document.activeElement) document.activeElement.blur();
+
+  createRipple(e);
+  downloadBtn.style.display = 'none';
+
+  setTimeout(() => {
+    html2pdf().set({
+      margin:       0.5,
+      filename:     'resume.pdf',
+      html2canvas:  { scale: 3 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    }).from(resumeEl).save().finally(() => {
+      downloadBtn.style.display = '';
+    });
+  }, 200);
+});
