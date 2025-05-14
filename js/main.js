@@ -1,6 +1,4 @@
 import '../css/style.css';
-
-// Используем глобальный html2pdf, загруженный через CDN
 const html2pdf = window.html2pdf;
 
 document.querySelector('#app').innerHTML = `
@@ -9,7 +7,7 @@ document.querySelector('#app').innerHTML = `
     <h2 class="editable" contenteditable="true">Frontend Developer</h2>
     <p class="editable" contenteditable="true">Email: ivan@example.com</p>
     <p class="editable" contenteditable="true">Телефон: +7 900 123 45 67</p>
-    <p class="editable" contenteditable="true"> Django networks вся хуйня(гну линус жму пинус) </p>
+    <p class="editable" contenteditable="true"> Django networks</p>
     <button id="downloadBtn">Скачать PDF</button>
   </div>
 `;
@@ -28,7 +26,6 @@ function createRipple(e) {
 }
 
 downloadBtn.addEventListener('click', (e) => {
-  // Завершаем редактирование
   if (document.activeElement) document.activeElement.blur();
 
   createRipple(e);
